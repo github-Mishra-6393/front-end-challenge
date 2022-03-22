@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+    :root{
+      --h-color: hsl(0, 0%, 100%);
+      --bg-color: hsl(216, 12%, 8%);
+      --p-color: hsl(217, 12%, 63%);
+      --c-bg-color: hsl(213, 19%, 18%);
+      --ele-bg-color: hsl(213, 19%, 25%);
+      --font-family : 'Overpass', sans-serif;
+      --btn-color : hsl(25, 97%, 53%);
+    }
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html{
+      background-color: hsl(216, 12%, 8%);
+    }
+    .attribution { 
+      font-size: 11px; 
+      text-align: center;
+      background-color: hsl(216, 12%, 8%);
+    
+    }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    .wraper{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 24%;
+      background-color: var(--c-bg-color);
+      border-radius: 1.5rem;
+      text-align: left;
+      padding: 1.5rem;
+    }
+    .rate-us{
+      display: block;
+    }
+    .rate-us img{
+      background-color: var(--ele-bg-color);
+      padding: 0.8rem;
+      border-radius: 50%;
+      margin: 0.8rem 0;
+    }
+    .rate-us h1{
+      color: var(--h-color);
+      font-family: var(--font-family);
+      font-weight: 700;
+    }
+    .rate-us p{
+      color: var(--p-color);
+      font-size: 0.99rem;
+      font-family: var(--font-family);
+      font-weight: 400;
+      margin: 0.8rem 0;
+    }
+    .rating{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin: 0.8rem;
+    }
+    .rating li{
+      color: var(--p-color);
+      background-color: var(--ele-bg-color);
+      width: 1.25rem;
+      height: 1.25rem;
+      padding: 0.8rem;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      list-style: none;
+      font-family: var(--font-family);
+      text-align: center;
+    }
+    .rate-us button{
+      font-family: var(--font-family);
+      text-align: center;
+      background-color: var(--btn-color);
+      width: 90%;
+      margin: 0.8rem 0 0.8rem 1.25rem;
+      padding: 0.5rem;
+      border-radius: 1.25rem;
+      font-size: 0.99rem;
+      color: var(--h-color);
+    }
+    .rate-us button:hover , .rating li:hover{
+      cursor: pointer;
+    }
+    /* THANK YOU PAGE */
+    .thanks-page {
+      display: none;
+    }
+    .thanks-page img{
+      display: block;
+      width: 8.75rem;
+      margin:10px auto;
+    }
+    .rating-msg{
+      font-size: 0.87rem;
+      font-family: var(--font-family);
+      font-weight: 400;
+      background-color: var(--ele-bg-color);
+      width: 11.25rem;
+      margin: 1.25rem auto;
+      text-align: center;
+      padding: 3px;
+      color: rgba(197, 87, 48, 0.808);
+      border-radius: 0.7rem;
+
+    }
+    .thanks-page h1{
+      text-align: center;
+      color: var(--h-color);
+      font-family: var(--font-family);
+      font-weight: 700;
+      margin: 1.8rem 0 1.25rem 0;
+    }
+    .msg{
+      color: var(--p-color);
+      font-size: 0.8rem;
+      font-weight: 400;
+      font-family: var(--font-family);
+      text-align: center;
+      word-spacing: 1px ;
+      margin: 0.3rem 0 0.99rem 0;
+    }
+
+    /* *** *** FOR MOBILE *** ***  */
+    @media only screen and (max-width:375px) {
+      .wraper{
+      width: 75%;
+      background-color: var(--c-bg-color);
+      border-radius: 1.2rem;
+      text-align: left;
+      padding: 1.5rem;
+    }
+    .rate-us{
+      display: none;
+    }
+    .rate-us img{
+      background-color: var(--ele-bg-color);
+      padding: 0.8rem;
+      border-radius: 50%;
+      margin: 0.8rem 0;
+    }
+    .rate-us h1{
+      color: var(--h-color);
+      font-family: var(--font-family);
+      font-weight: 700;
+    }
+    .rate-us p{
+      color: var(--p-color);
+      font-size: 0.85rem;
+      font-family: var(--font-family);
+      font-weight: 500;
+      margin: 0.8rem 0;
+    }
+    .rating{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin: 0.8rem;
+    }
+    .rating li{
+      color: var(--p-color);
+      background-color: var(--ele-bg-color);
+      width: 1.1rem;
+      height: 1.1rem;
+      /* padding: 0.5rem; */
+      border-radius: 50%;
+      font-size: 1rem;
+      list-style: none;
+      font-family: var(--font-family);
+      text-align: center;
+    }
+    .rate-us button{
+      font-family: var(--font-family);
+      text-align: center;
+      background-color: var(--btn-color);
+      width: 90%;
+      margin: 0.8rem 0 0.8rem 1.25rem;
+      padding: 0.5rem;
+      border-radius: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--h-color);
+      letter-spacing: 0.1rem;
+    }
+    .rate-us button:hover , .rating li:hover{
+      cursor: pointer;
+    }
+    /* THANK YOU PAGE */
+    .thanks-page {
+      display: block;
+    }
+    .thanks-page img{
+      display: block;
+      width: 8.75rem;
+      margin:10px auto;
+    }
+    .rating-msg{
+      font-size: 0.87rem;
+      font-family: var(--font-family);
+      font-weight: 400;
+      background-color: var(--ele-bg-color);
+      width: 11.25rem;
+      margin: 1.25rem auto;
+      text-align: center;
+      padding: 3px;
+      color: rgba(197, 87, 48, 0.808);
+      border-radius: 0.7rem;
+
+    }
+    .thanks-page h1{
+      text-align: center;
+      color: var(--h-color);
+      font-family: var(--font-family);
+      font-weight: 700;
+      margin: 1.8rem 0 1.25rem 0;
+    }
+    .msg{
+      color: var(--p-color);
+      font-size: 0.8rem;
+      font-weight: 400;
+      font-family: var(--font-family);
+      text-align: center;
+      word-spacing: 1px ;
+      margin: 0.3rem 0 0.99rem 0;
+    }
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Ankit Mishra</a>.
+    <div class="wraper">
+      <div class="rate-us">
+        <img src="./images/icon-star.svg" alt="Star">
+        <h1>How did we do?</h1>
+        <p>Please let us know how we do with your support request. All feedback is appreciated to help us improve our offering!</p>
+          <ul class="rating">
+            <li class='rating-value' value="1">1</li>
+            <li class='rating-value' value="2">2</li>
+            <li class='rating-value' value="3">3</li>
+            <li class='rating-value' value="4">4</li>
+            <li class='rating-value' value="5">5</li>
+          </ul>
+        <button class="submit">SUBMIT</button>
+      </div>
+      <div class="thanks-page">
+
+        <img src="./images/illustration-thank-you.svg" alt="Thank you">
+        <p class="rating-msg">You selected <span class="given-rating">4</span> out of 5</p>
+        <h1>Thank you!</h1>
+        <p class="msg">We appreciate you taking the time to give a rating. if you ever need a suppport, don't hasitate to get in touch.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let btn = document.querySelector('.submit');
+    let rating = 0;
+    let values = document.querySelectorAll('.rating-value');
+    values.forEach(el=>{
+      el.addEventListener('click', ()=>{
+        el.style.color = 'tomato';
+        rating = el.value;
+        console.log(rating);
+        return btn;
+      });
+    })
+    btn.addEventListener('click', ()=>{
+        document.querySelector('.given-rating').innerHTML = rating;
+        document.querySelector ('.rate-us').style.display = 'none';
+        document.querySelector('.thanks-page').style.display = 'block'
+    })
+
+  </script>
+</body>
+</html>
