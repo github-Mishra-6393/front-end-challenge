@@ -96,7 +96,12 @@
       font-size: 0.99rem;
       color: var(--h-color);
     }
-    .rate-us button:hover , .rating li:hover{
+    .rating li:hover{
+      cursor: pointer;
+      background-color: var(--btn-color);
+
+    }
+    .rate-us button:hover {
       cursor: pointer;
     }
     /* THANK YOU PAGE */
@@ -279,7 +284,8 @@
     let values = document.querySelectorAll('.rating-value');
     values.forEach(el=>{
       el.addEventListener('click', ()=>{
-        el.style.color = 'tomato';
+        el.style.backgroundColor = "hsl(216, 12%, 54%)";
+        el.style.color ="white";
         rating = el.value;
         console.log(rating);
         return btn;
